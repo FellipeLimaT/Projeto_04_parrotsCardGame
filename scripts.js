@@ -34,9 +34,9 @@ let quantidadeCartas = Number(
   
   //** Array que receberá os gifs */
   const sorteio = [];
-  
+  const addCards = document.querySelector(".conteudo");
   function comparador() {
-    return Math.floor(Math.random() * quantidadeCartas);
+    return Math.random() -0.5;
   }
   
   //** Função para embaralhar a posição dos gifs na hora distribuição das cartas*/
@@ -47,53 +47,105 @@ let quantidadeCartas = Number(
   
     sorteio.sort(comparador);
   }
-  
-  const addCards = document.querySelector(".conteudo");
-  
+
+  shuffleCards();
+   
   
     //** Distribuição de cards */
   
     for (let i = 0; i < quantidadeCartas; i++) {
       addCards.innerHTML += `
-              <div class="card" onclick="flipCard(this)" >
+              <div class="card" onclick="memoryCard(this)" >
                   <div class="front-face face">
                       <img src="/images/front.png"> 
                   </div>
                   <div class="back-face face">
-                      <img src="${gifs[i]}">
+                      <img id="figura${i}" src="${sorteio[i]}">
                   </div>                           
               </div>
               `;
     }
   
-    //** Embaralhar cards */
-  
-    shuffleCards();
-  
-  
-  //** Fim da Distribuição de Cards */
-  
+
   const listCards = document.querySelectorAll(".card");
   
-  let firstCard;
-  let secondCard;
+  let firstCard = {clicado: null, image: null};
+  let secondCard = {clicado: null, image: null};
+
+  function memoryCard(elemento){
+
+    let photo = document.getElementById('figura').src;
+    console.log("firstCard", firstCard)
+    console.log("secondCard", secondCard)
+    
+    if (firstCard.clicado === null){
+      console.log("cheguei aqui 2")
+      firstCard.clicado = elemento;
+      firstCard.image = photo;
+      
+      flipCard(elemento);
+
+    } else if(secondCard.clicado === null){
+      console.log("cheguei aqui 3")
+      secondCard.clicado = elemento;
+      secondCard.image = photo;
+
+      flipCard(elemento);
+
+      compareCards(firstCard, secondCard);
+    }
+    
+  }
   
-  function flipCard(elemento) {
-    if (elemento.classList.contains("flip")) {
+  function compareCards(firstCard, secondCard){
+    
+    if(firstCard.image !== secondCard.image){
+      firstCard.document.querySelector.remove(".flip");
+      secondCard.document.querySelector.remove(".flip");
+    };
+  }
+  
+  
+  function checkCards() {
+    
+    elemento = firstCard
+    if(firstCard !== undefined){
+      
+      secondCard = elemento;
+    }
+    
+    let Carta1 = firstCard.children[1];
+    let Carta2 = secondCard.children[2];
+
+    if(Carta1.document.querySelector(".scr") !==
+       Carta2.document.querySelector(".scr")){
+
       elemento.classList.remove("flip");
       elemento.children[0].classList.remove("flip");
       elemento.children[1].classList.remove("flip");
-    } else {
-      elemento.classList.add("flip");
-      elemento.children[0].classList.add("flip");
-      elemento.children[1].classList.add("flip");
-      firstCard = elemento;
+    }else{
+      firstCard = undefined;
+      secondCard = undefined;
     }
-  
-    function checkCards() {}
-  
-    function disableCards() {}
-  
-    function resetCards(isMatch = false) {}
   }
+
+  function flipCard(elemento) {
+    
+      
+      if (elemento.classList.contains("flip")) {
+        
+        
+        //elemento.classList.remove("flip");
+        //elemento.children[0].classList.remove("flip");
+        //elemento.children[1].classList.remove("flip");
+      } else {
+        elemento.classList.add("flip");
+        elemento.children[0].classList.add("flip");
+        elemento.children[1].classList.add("flip");
+      }
+  
+      
+    }
+    
+ 
   
