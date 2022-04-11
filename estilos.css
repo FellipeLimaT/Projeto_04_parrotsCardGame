@@ -106,3 +106,23 @@ h1{
     color: #75B79E;
 }
 
+
+
+.reloj{
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+    color: #363431;
+      
+}
+#contador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border: 3px solid #75B79E; 
+    border-radius: 10px;
+    padding: 10px, 10px;
+    
+}
