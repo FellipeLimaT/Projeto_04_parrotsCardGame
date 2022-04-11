@@ -37,8 +37,6 @@ body{
 .card{
     width: 117px;
     height: 146px;
-    background: #A7E9AF;
-    border: 1px solid #99CEA8;
     border-radius: 5px;
     margin: 34px 34px;
     display: flex;
@@ -80,11 +78,8 @@ body{
     transform: rotateY(180deg);
   }
 
-.flip {
-    background-color: crimson;
-}
-
 .back-face.flip {
+    
     transform: rotateY(0deg);
   }
 
@@ -92,12 +87,9 @@ body{
     transform: rotateY(-180deg);
   }
 
-
-
 .card.flip {
     transform: rotateY(180deg);
 }
-
 
 h1{
     font-family: 'Roboto', sans-serif;
@@ -106,14 +98,13 @@ h1{
     color: #75B79E;
 }
 
-
-
 .reloj{
     font-size: 25px;
     font-family: 'Roboto', sans-serif;
     color: #363431;
       
 }
+
 #contador{
     display: flex;
     justify-content: center;
@@ -123,6 +114,5 @@ h1{
     right: 10px;
     border: 3px solid #75B79E; 
     border-radius: 10px;
-    padding: 10px, 10px;
-    
+    padding: 10px, 10px;    
 }

@@ -45,7 +45,6 @@ function restartGame(){
 
 
 function startGame(){ 
-  
   quantidadeCartas = Number(
     prompt("Com quantas cartas você quer jogar? (Opções: 4, 6, 8, 10, 12 e 14)")
   );
@@ -58,6 +57,21 @@ function startGame(){
     quantidadeCartas = Number(
       prompt("Com quantas cartas você quer jogar? (Opções: 4, 6, 8, 10, 12 e 14)")
     );
+  }
+  
+  shuffleCards();
+  
+  for (let i = 0; i < quantidadeCartas; i++) {
+    addCards.innerHTML += `
+            <div class="${"div-"+i} card" onclick="memoryCard(this, ${i})" >
+                <div class="front-face face">
+                    <img src="/images/front.png"> 
+                </div>
+                <div class="back-face face">
+                    <img id="${i}" src="${sorteio[i]}">
+                </div>                           
+            </div>
+            `;
   }
 }
 
@@ -73,21 +87,6 @@ function shuffleCards() {
   }
   sorteio.sort(comparador);
 }
-
-shuffleCards();
-
-  for (let i = 0; i < quantidadeCartas; i++) {
-    addCards.innerHTML += `
-            <div class="${"div-"+i} card" onclick="memoryCard(this, ${i})" >
-                <div class="front-face face">
-                    <img src="/images/front.png"> 
-                </div>
-                <div class="back-face face">
-                    <img id="${i}" src="${sorteio[i]}">
-                </div>                           
-            </div>
-            `;
-  }
 
 let firstCard = {id: null, image: null};
 let secondCard = {id: null, image: null};
